@@ -28,6 +28,6 @@ public class PatientController {
         // at this point PatientRequest is parsed for us already
         System.out.println("Obtained patient request object: " + patientRequest);
 
-        return ResponseEntity.ok().body(new PatientResponse());
+        return ResponseEntity.ok().build();
     }
 }

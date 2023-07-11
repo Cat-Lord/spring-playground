@@ -7,6 +7,8 @@ import lombok.Value;
 @Value
 public class Patient {
     Long id;
-    String fullName;
-
+    String firstName;
+    String lastName;
+    String email;
+    Integer age;
 }

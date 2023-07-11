@@ -8,5 +8,6 @@ import lombok.ToString;
 @Getter
 @Setter
 public class PatientRequest {
-    String name;
+    String email;
+    Integer age;
 }
