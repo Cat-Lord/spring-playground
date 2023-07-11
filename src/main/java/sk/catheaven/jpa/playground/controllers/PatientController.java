@@ -1,5 +1,6 @@
 package sk.catheaven.jpa.playground.controllers;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,9 +24,9 @@ public class PatientController {
 
     // or we can guide spring towards our object that it will try to convert it into
     @PostMapping("/patients/new")
-    public ResponseEntity<PatientResponse> saveNewPatient(@RequestBody PatientRequest patientRequest) {
+    public ResponseEntity<PatientResponse> saveNewPatient(@RequestBody @Valid PatientRequest patientRequest) {
 
-        // at this point PatientRequest is parsed for us already
+        // at this point PatientRequest is parsed AND VALIDATED for us already
         System.out.println("Obtained patient request object: " + patientRequest);
 
         return ResponseEntity.ok().build();
