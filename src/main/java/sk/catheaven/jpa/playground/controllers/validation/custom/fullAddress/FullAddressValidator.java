@@ -29,11 +29,20 @@ public class FullAddressValidator implements ConstraintValidator<FullAddress, Ad
     }
 
     @Override
-    public boolean isValid(Address address, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(Address address, ConstraintValidatorContext context) {
         if (isNull(address)) return false;
         if (isBlank(address.getName()) || isBlank(address.getCity())) return false;
 
         Matcher matcher = SUPPORTED_STATE_FORMAT_PATTERNS.get(stateFormat).matcher(address.getState());
-        return matcher.matches();
+        // if we want to be more specific instead of generic "Invalid address" message
+        if (!matcher.matches()) {
+            context.disableDefaultConstraintViolation();        // disable default behaviour
+            context.buildConstraintViolationWithTemplate("Invalid State Name, please provide a valid state name")
+                    .addPropertyNode("state")
+                    .addConstraintViolation();
+            return false;
+        }
+
+        return true;
     }
 }
