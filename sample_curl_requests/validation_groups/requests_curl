@@ -1,0 +1,11 @@
+# try login first
+curl -X POST localhost:8080/login -d "@login_request.json" -H "Content-Type: application/json"
+
+# then try valid signup
+curl -X POST localhost:8080/signup -d "@signup_request.json" -H "Content-Type: application/json"
+
+# then try signup with birth - error expected
+curl -X POST localhost:8080/signup -d "@signup_request_fail.json" -H "Content-Type: application/json"
+
+# after that try login with missing birth - no error
+curl -X POST localhost:8080/login -d "@signup_request_fail.json" -H "Content-Type: application/json"
