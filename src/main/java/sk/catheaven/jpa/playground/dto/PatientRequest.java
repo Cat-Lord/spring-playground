@@ -40,4 +40,8 @@ public class PatientRequest {
     @Embedded
     @FullAddress(value = StateFormat.ANSI)
     Address address;
+
+    @NotNull
+    @Pattern(regexp = "[0-9]{3}-[0-9]{3}-[0-9]{4}")
+    String ssn;
 }

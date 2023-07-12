@@ -10,12 +10,15 @@ import sk.catheaven.jpa.playground.controllers.mappers.ModelMapper;
 import sk.catheaven.jpa.playground.dto.PatientRequest;
 import sk.catheaven.jpa.playground.dto.PatientResponse;
 import sk.catheaven.jpa.playground.model.Patient;
+import sk.catheaven.jpa.playground.service.PatientService;
 
 @RestController
 @RequiredArgsConstructor
 public class PatientController {
 
     private final ModelMapper<Patient, PatientRequest, PatientResponse> patientMapper;
+    private final PatientService patientService;
+
 
     // we can keep the request body as plain string
     @PostMapping("/patients/raw")
@@ -36,6 +39,7 @@ public class PatientController {
 
         // convert and return something to the caller
         var patient = patientMapper.toModel(patientRequest);
-        return ResponseEntity.ok(patientMapper.toResponse(patient));
+        var savedPatient = patientService.savePatient(patient);
+        return ResponseEntity.ok(patientMapper.toResponse(savedPatient));
     }
 }

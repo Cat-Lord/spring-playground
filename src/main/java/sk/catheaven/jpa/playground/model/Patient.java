@@ -1,5 +1,6 @@
 package sk.catheaven.jpa.playground.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,4 +31,6 @@ public class Patient {
     Integer age;
     List<String> favoriteCats;
     Boolean isCatLover;
+    @Column(unique = true)
+    String ssn;
 }

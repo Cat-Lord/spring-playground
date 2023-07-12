@@ -1,5 +1,7 @@
 package sk.catheaven.jpa.playground.controllers.errorHandling;
 
+import jakarta.validation.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -44,6 +46,19 @@ public class GenericControllerAdvice {
                 .title("Found errors")
                 .detail("Data contains error, please fix them and try again.")
                 .validationErrors(invalidArgsErrors)
+                .build();
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    @ResponseStatus(BAD_REQUEST)
+    public ErrorResponse handleDataConstraintException(Exception exception) {
+        if (!(exception.getCause() instanceof ConstraintViolationException constraintViolationException)) {
+            return handleUnexpectedErrors(exception);
+        }
+        return ErrorResponse.builder()
+                .title("Identifier already present")
+                // can be parsed using constraintViolationException.getConstraintName()
+                .detail("User with such SSN is already present. ")
                 .build();
     }
 

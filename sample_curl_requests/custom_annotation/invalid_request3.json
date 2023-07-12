@@ -1,17 +1,18 @@
 {
-	"email": "cat@lord.cat",
-	"age": 320,
-	"favoriteCats": [
-		"Kefir",
-		"Eddy",
-		"Berry"
-	],
-	"isCatLover": true,
-	"address": {
-		"name": "Esome",
-		"street": "Sesame Street",
-		"city": "San Juan",
-		"state": "PRI",
-		"zipCode": "123-987"
-	}
+  "email": "cat@lord.cat",
+  "age": 320,
+  "favoriteCats": [
+    "Kefir",
+    "Eddy",
+    "Berry"
+  ],
+  "isCatLover": true,
+  "address": {
+    "name": "Esome",
+    "street": "Sesame Street",
+    "city": "San Juan",
+    "state": "PRI",
+    "zipCode": "123-987"
+  },
+  "ssn": "111-222-1234"
 }

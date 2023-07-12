@@ -12,5 +12,6 @@
     "street": "Sesame Street",
     "state": "PRI",
     "zipCode": "123-987"
-  }
+  },
+  "ssn": "111-222-1234"
 }

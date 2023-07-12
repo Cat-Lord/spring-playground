@@ -20,6 +20,9 @@ public class PatientMapper implements ModelMapper<Patient, PatientRequest, Patie
         return Patient.builder()
                 .email(patientRequest.getEmail())
                 .age(patientRequest.getAge())
+                .favoriteCats(patientRequest.getFavoriteCats())
+                .isCatLover(patientRequest.getIsCatLover())
+                .ssn(patientRequest.getSsn())
                 .build();
     }
 
