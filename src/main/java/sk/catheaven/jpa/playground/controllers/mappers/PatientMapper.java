@@ -8,10 +8,16 @@ public class PatientMapper implements ModelMapper<Patient, PatientRequest, Patie
 
     @Override
     public Patient toModel(Patient original, PatientRequest patientRequest) {
+        var patient = toModel(patientRequest);
+        patient.setId(original.getId());
+        patient.setFirstName(original.getFirstName());
+        patient.setLastName(original.getLastName());
+        return patient;
+    }
+
+    @Override
+    public Patient toModel(PatientRequest patientRequest) {
         return Patient.builder()
-                .id(original.getId())
-                .firstName(original.getFirstName())
-                .lastName(original.getLastName())
                 .email(patientRequest.getEmail())
                 .age(patientRequest.getAge())
                 .build();

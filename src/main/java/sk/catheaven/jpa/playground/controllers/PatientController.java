@@ -2,13 +2,13 @@ package sk.catheaven.jpa.playground.controllers;
 
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import sk.catheaven.jpa.playground.dto.PatientRequest;
 import sk.catheaven.jpa.playground.dto.PatientResponse;
 
-@Controller
+@RestController
 public class PatientController {
 
     // we can keep the request body as plain string

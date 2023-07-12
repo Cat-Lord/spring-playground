@@ -1,9 +1,9 @@
 package sk.catheaven.jpa.playground.controllers.errorHandling;
 
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import sk.catheaven.jpa.playground.dto.ErrorResponse;
 
 import java.util.Optional;
@@ -12,18 +12,8 @@ import java.util.stream.Collectors;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
-@ControllerAdvice("sk.catheaven.jpa.playground")
-public class PatientAdvice {
-
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(INTERNAL_SERVER_ERROR)
-    public ErrorResponse handleUnexpectedErrors(Exception exception) {
-        return ErrorResponse.builder()
-                .title("Unexpected error occurred")
-                .detail("Please, contact the administrator, if the error persists")
-                .errorMessage(exception.getMessage())
-                .build();
-    }
+@RestControllerAdvice("sk.catheaven.jpa.playground")
+public class GenericControllerAdvice {
 
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(BAD_REQUEST)
@@ -54,6 +44,16 @@ public class PatientAdvice {
                 .title("Found errors")
                 .detail("Data contains error, please fix them and try again.")
                 .validationErrors(invalidArgsErrors)
+                .build();
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(INTERNAL_SERVER_ERROR)
+    public ErrorResponse handleUnexpectedErrors(Exception exception) {
+        return ErrorResponse.builder()
+                .title("Unexpected error occurred")
+                .detail("Please, contact the administrator, if the error persists")
+                .errorMessage(exception.getMessage())
                 .build();
     }
 }
