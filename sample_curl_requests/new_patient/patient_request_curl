@@ -1,0 +1,5 @@
+# should pass without issues
+curl -X POST  --header "Content-Type: application/json"  localhost:8080/patients/new --data "@patient_request.json"
+
+# should inform about 3 errors (email, age and city from address)
+curl -X POST  --header "Content-Type: application/json"  localhost:8080/patients/new --data "@invalid_patient_request.json"

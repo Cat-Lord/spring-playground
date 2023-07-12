@@ -1,1 +1,0 @@
-curl -X POST  --header "Content-Type: application/json"  localhost:8080/patients/new --data "@patient_request"

@@ -1,0 +1,17 @@
+{
+	"email": "cat@lord.cat",
+	"age": 11,
+	"favoriteCats": [
+		"Kefir",
+		"Eddy",
+		"Berry"
+	],
+	"isCatLover": true,
+	"address": {
+		"name": "Esome",
+		"street": "Sesame Street",
+		"city": "",
+		"state": "PRI",
+		"zipCode": "123-987"
+	}
+}

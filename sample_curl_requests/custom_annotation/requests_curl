@@ -1,0 +1,11 @@
+# patient with correct data
+curl -X POST localhost:8080/patients/new -d "@request.json" -H "Content-Type: application/json"
+
+# error in custom validation field
+curl -X POST localhost:8080/patients/new -d "@invalid_request1.json" -H "Content-Type: application/json"
+
+# error in address city
+curl -X POST localhost:8080/patients/new -d "@invalid_request2.json" -H "Content-Type: application/json"
+
+# error in age (to make sure validation still holds properly)
+curl -X POST localhost:8080/patients/new -d "@invalid_request3.json" -H "Content-Type: application/json"

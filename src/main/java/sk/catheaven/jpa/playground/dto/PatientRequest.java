@@ -1,5 +1,6 @@
 package sk.catheaven.jpa.playground.dto;
 
+import jakarta.persistence.Embedded;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -10,6 +11,9 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import sk.catheaven.jpa.playground.controllers.validation.custom.fullAddress.FullAddress;
+import sk.catheaven.jpa.playground.controllers.validation.custom.fullAddress.StateFormat;
+import sk.catheaven.jpa.playground.model.Address;
 
 import java.util.List;
 
@@ -32,4 +36,8 @@ public class PatientRequest {
 
     @AssertTrue
     Boolean isCatLover;
+
+    @Embedded
+    @FullAddress(value = StateFormat.ANSI)
+    Address address;
 }
